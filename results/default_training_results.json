@@ -1,0 +1,85 @@
+{
+  "final_metrics": {
+    "train_loss": NaN,
+    "train_base_loss": NaN,
+    "train_inventory_loss": NaN,
+    "val_loss": NaN,
+    "val_base_loss": NaN
+  },
+  "early_stopped": true,
+  "config": {
+    "model": {
+      "input_dim": 80,
+      "hidden_dim": 256,
+      "num_encoder_layers": 6,
+      "num_decoder_layers": 3,
+      "num_heads": 4,
+      "num_phonemes": 64,
+      "num_languages": 4,
+      "dropout": 0.1,
+      "use_adaptive_fusion": true
+    },
+    "data": {
+      "languages": [
+        "en",
+        "es",
+        "fr",
+        "de"
+      ],
+      "max_duration": 10.0,
+      "max_samples_per_language": 500,
+      "batch_size": 16,
+      "num_workers": 4,
+      "train_split": "train",
+      "val_split": "validation",
+      "test_split": "test"
+    },
+    "audio": {
+      "target_sample_rate": 16000,
+      "n_mels": 80,
+      "n_fft": 400,
+      "hop_length": 160,
+      "feature_type": "mel"
+    },
+    "training": {
+      "num_epochs": 50,
+      "learning_rate": 0.0001,
+      "weight_decay": 0.01,
+      "max_grad_norm": 1.0,
+      "warmup_epochs": 2,
+      "early_stopping_patience": 10,
+      "use_amp": true,
+      "optimizer": {
+        "type": "adamw",
+        "betas": [
+          0.9,
+          0.98
+        ],
+        "eps": 1e-09
+      },
+      "scheduler": {
+        "type": "cosine",
+        "eta_min": 1e-06
+      }
+    },
+    "loss": {
+      "inventory_weight": 0.1,
+      "diversity_weight": 0.05
+    },
+    "checkpoint": {
+      "save_dir": "checkpoints",
+      "save_freq": 1
+    },
+    "logging": {
+      "log_level": "INFO",
+      "use_mlflow": true,
+      "mlflow_experiment": "phoneme_asr",
+      "log_freq": 10
+    },
+    "seed": 42,
+    "inference": {
+      "max_length": 100,
+      "beam_size": 1
+    }
+  }
+}
