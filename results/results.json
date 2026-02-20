@@ -1,0 +1,45 @@
+{
+  "experiment": "phoneme-aware-multilingual-asr-with-adaptive-layer-fusion",
+  "status": "completed_with_nan",
+  "training": {
+    "total_epochs_run": 10,
+    "early_stopped": true,
+    "early_stopping_patience": 10,
+    "final_train_loss": "NaN",
+    "final_val_loss": "NaN",
+    "best_val_loss": "Infinity",
+    "learning_rate_initial": 0.0001,
+    "learning_rate_final": 9.758e-05,
+    "scheduler": "cosine",
+    "use_amp": true,
+    "global_steps": 230,
+    "data_source": "synthetic (Common Voice dataset unavailable)"
+  },
+  "model": {
+    "architecture": "PhonemeAwareASRModel",
+    "input_dim": 80,
+    "hidden_dim": 256,
+    "num_encoder_layers": 6,
+    "num_decoder_layers": 3,
+    "num_heads": 4,
+    "num_phonemes": 64,
+    "num_languages": 4,
+    "use_adaptive_fusion": true,
+    "total_parameters": 8534414
+  },
+  "metrics": {
+    "train_loss": "NaN",
+    "train_base_loss": "NaN",
+    "train_inventory_loss": "NaN",
+    "val_loss": "NaN",
+    "val_base_loss": "NaN"
+  },
+  "data": {
+    "languages": ["en", "es", "fr", "de"],
+    "training_samples": 360,
+    "validation_samples": 40,
+    "source": "synthetic_fallback",
+    "note": "Common Voice 13.0 dataset was unavailable (trust_remote_code no longer supported), so synthetic data was used for pipeline validation"
+  },
+  "notes": "All training losses were NaN throughout all 10 epochs due to issues with synthetic data format. The model's adaptive layer fusion architecture (8.5M parameters) was validated structurally but did not converge on the synthetic fallback data. Real Common Voice data would be needed for meaningful ASR metrics."
+}
